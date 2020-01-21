@@ -4,6 +4,8 @@ const submitButton = document.querySelector("#button");
 const blogPreview =  document.querySelector("#preview");
 const newBlogPostform= document.querySelector('#blog-form');
 const postsContainer=document.querySelector('#posts>.container');
+const editForm =document.querySelector('#edit-post-form');
+const edit_close_btn=document.querySelector('#edit-close-btn');
 
 let ourPost = {
   "title":"",
@@ -66,6 +68,45 @@ window.addEventListener('load', (event) => {
       localStorage.setItem('post', JSON.stringify(postArray));
       element.remove();
     })
+
+    postElement.querySelector('.post-button.edit').addEventListener('click',(e)=>{
+      let element=e.path[2];
+      let post_id=parseInt(element.getAttribute('id'));
+      let postArray=JSON.parse(localStorage.getItem('post'));
+      let titleInput=editForm.querySelector('#edit-title');
+      let bodyInput=editForm.querySelector('#edit-body');
+      let editSubmit=editForm.querySelector('#edit-blog-form');
+
+      edit_close_btn.addEventListener('click',(e)=>{
+        titleInput.value="";
+        bodyInput.value="";
+        editForm.style.display='none';
+        editForm.style.visibility='hidden';
+      });
+
+      titleInput.value=postArray[post_id].title
+      bodyInput.value=postArray[post_id].body
+      editForm.style.display='block';
+      editForm.style.visibility='visible';
+
+      editSubmit.addEventListener('submit',(e)=>{
+        e.preventDefault();
+        postArray[post_id].title=titleInput.value
+        postArray[post_id].body=bodyInput.value
+        localStorage.setItem('post', JSON.stringify(postArray));
+        titleInput.value="";
+        bodyInput.value="";
+      editForm.style.display='none';
+      editForm.style.visibility='hidden';
+
+      })
+
+    
+
+    })
+
+
+    
     });
   }
 });

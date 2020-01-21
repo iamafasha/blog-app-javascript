@@ -37,3 +37,15 @@ button{
     padding: 0.2em 0.4em;
     margin: 0px 0.2em;
 }
+
+
+.edit-post.overlay{
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    background: white;
+    display: none;
+    visibility: hidden;
+}
