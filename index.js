@@ -24,7 +24,6 @@ blogBody.addEventListener('keyup',(e)=>{
 })
 
 
-
 newBlogPostform.addEventListener('submit',(e)=>{
   e.preventDefault();
 
@@ -44,19 +43,29 @@ window.addEventListener('load', (event) => {
   let dbPosts=JSON.parse(localStorage.getItem('post'));
   if(dbPosts){
     dbPosts.forEach((post , index)=> {
-    let postElement=document.createElement("div")
-    postElement.setAttribute('id',index)
+    let postElement=document.createElement("div");
+    postElement.setAttribute('id',index);
+    postElement.setAttribute('class','blog-post');
     postElement.innerHTML=`
           <h3>${post.title}</h3>
           <p>${post.body}</p>
           <div>
 
-          <span class="post-button edit" ><i class="fa fa-pencil" aria-hidden="true"></i></span>
-          <span class="post-button delete" ><i class="fa fa-trash" aria-hidden="true"></i></span>
-          </div>
+        <i class="fa fa-pencil post-button edit" aria-hidden="true"></i>
+        <i class="fa fa-trash post-button delete" aria-hidden="true"></i>
+        </div>
           <hr/>
           `;
     postsContainer.appendChild(postElement);
+    //delete button event
+    postElement.querySelector('.post-button.delete').addEventListener('click',(e)=>{
+      let element=e.path[2];
+      let post_id=parseInt(element.getAttribute('id'));
+      let postArray=JSON.parse(localStorage.getItem('post'));
+      postArray.splice(post_id,1);
+      localStorage.setItem('post', JSON.stringify(postArray));
+      element.remove();
+    })
     });
   }
 });
