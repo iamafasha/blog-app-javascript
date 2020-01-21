@@ -7,9 +7,10 @@ const postsContainer=document.querySelector('#posts>.container');
 const editForm =document.querySelector('#edit-post-form');
 const edit_close_btn=document.querySelector('#edit-close-btn');
 
-let ourPost = {
+const ourPost = {
   "title":"",
-  "body":""
+  "body":"",
+  "post_time":""
 };
 
 
@@ -33,12 +34,12 @@ newBlogPostform.addEventListener('submit',(e)=>{
   if(postArray===null){
     postArray=[]
   }
-  
+  ourPost.post_time= new Date();
   postArray.push(ourPost)
   localStorage.setItem('post', JSON.stringify(postArray));
   blogBody.value="";
   blogTitle.value="";
-
+  location.reload(true)
 })
 
 window.addEventListener('load', (event) => {
@@ -51,17 +52,21 @@ window.addEventListener('load', (event) => {
     postElement.innerHTML=`
           <h3>${post.title}</h3>
           <p>${post.body}</p>
+          <div class="row settings-row" >
           <div>
-
-        <i class="fa fa-pencil post-button edit" aria-hidden="true"></i>
-        <i class="fa fa-trash post-button delete" aria-hidden="true"></i>
-        </div>
+            <i class="fa fa-pencil post-button edit" aria-hidden="true"></i>
+            <i class="fa fa-trash post-button delete" aria-hidden="true"></i>
+          </div>
+          <div >
+            ${post.post_time}
+          </div>
+          </div>
           <hr/>
           `;
     postsContainer.appendChild(postElement);
     //delete button event
     postElement.querySelector('.post-button.delete').addEventListener('click',(e)=>{
-      let element=e.path[2];
+      let element=e.path[3];
       let post_id=parseInt(element.getAttribute('id'));
       let postArray=JSON.parse(localStorage.getItem('post'));
       postArray.splice(post_id,1);
@@ -70,7 +75,7 @@ window.addEventListener('load', (event) => {
     })
 
     postElement.querySelector('.post-button.edit').addEventListener('click',(e)=>{
-      let element=e.path[2];
+      let element=e.path[3];
       let post_id=parseInt(element.getAttribute('id'));
       let postArray=JSON.parse(localStorage.getItem('post'));
       let titleInput=editForm.querySelector('#edit-title');
@@ -98,7 +103,7 @@ window.addEventListener('load', (event) => {
         bodyInput.value="";
       editForm.style.display='none';
       editForm.style.visibility='hidden';
-
+      location.reload(true)
       })
 
     
