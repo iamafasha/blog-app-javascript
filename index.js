@@ -43,8 +43,9 @@ newBlogPostform.addEventListener('submit',(e)=>{
 window.addEventListener('load', (event) => {
   let dbPosts=JSON.parse(localStorage.getItem('post'));
   if(dbPosts){
-    dbPosts.forEach(post => {
+    dbPosts.forEach((post , index)=> {
     let postElement=document.createElement("div")
+    postElement.setAttribute('id',index)
     postElement.innerHTML=`
           <h3>${post.title}</h3>
           <p>${post.body}</p>
