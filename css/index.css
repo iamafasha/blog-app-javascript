@@ -32,3 +32,8 @@ button{
    width:20%;
 }
 
+.post-button{
+    font-size: 1.2em;
+    padding: 0.2em 0.4em;
+    margin: 0px 0.2em;
+}
