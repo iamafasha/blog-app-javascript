@@ -66,7 +66,8 @@ window.addEventListener('load', (event) => {
     postsContainer.appendChild(postElement);
     //delete button event
     postElement.querySelector('.post-button.delete').addEventListener('click',(e)=>{
-      let element=e.path[3];
+      let element=e.target.parentElement.parentElement.parentElement;
+
       let post_id=parseInt(element.getAttribute('id'));
       let postArray=JSON.parse(localStorage.getItem('post'));
       postArray.splice(post_id,1);
@@ -75,7 +76,7 @@ window.addEventListener('load', (event) => {
     })
 
     postElement.querySelector('.post-button.edit').addEventListener('click',(e)=>{
-      let element=e.path[3];
+      let element=e.target.parentElement.parentElement.parentElement;
       let post_id=parseInt(element.getAttribute('id'));
       let postArray=JSON.parse(localStorage.getItem('post'));
       let titleInput=editForm.querySelector('#edit-title');
