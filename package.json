@@ -1,0 +1,27 @@
+{
+  "name": "blogger-blog-app",
+  "version": "1.0.0",
+  "description": "a simple [acakge to beogin your blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html"
+  },
+  "keywords": [
+    "javascript",
+    "vanilla",
+    "blog",
+    "app"
+  ],
+  "author": "afasha",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^4.4.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "jquery": "^3.4.1",
+    "parcel-bundler": "^1.12.4"
+  }
+}
