@@ -15,11 +15,24 @@ class App extends Component {
     }
   }
 
+  onInputChange=(e)=>{
+    e.preventDefault();
+    const name  = e.target.name;
+    const value = e.target.value;
+    console.log(name)
+    this.setState((prev)=>{
+        let newPost = {...prev.newPost,[name]:value}
+        return {
+            newPost
+        };
+    })
+  }
+
   render() {
     return (
       <>
-       <AddPost/>
-       <PreviewPost/>
+       <AddPost onInputChange={this.onInputChange} />
+       <PreviewPost post={this.state.newPost} />
        <Posts/>
       </>
     );
