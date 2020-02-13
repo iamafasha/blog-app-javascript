@@ -1,2 +1,23 @@
-# blog-app-javascript
-Javascript blog app done at JobTech Program 2020 
+# Kampala Blog App
+
+React Kampala Blog App.
+
+## How to run this app
+
+First install dependencies:
+
+```sh
+npm install
+```
+
+To run in hot module reloading mode:
+
+```sh
+npm start
+```
+
+To create a production build:
+
+```sh
+npm run build-prod
+```
