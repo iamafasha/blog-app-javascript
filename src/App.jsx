@@ -47,12 +47,21 @@ class App extends Component {
 
   }
 
+  delete=(index)=>{
+    this.setState((prev)=>{
+      const posts=[...prev.posts.splice(index,1)];
+      return {
+         posts
+      }
+    })
+  }
+
   render() {
     return (
       <>
        <AddPost post={this.state.newPost} onSubmitPost={this.onSubmitPost} onInputChange={this.onInputChange} />
        <PreviewPost post={this.state.newPost} />
-       <Posts posts={this.state.posts} />
+       <Posts delete_post={this.delete} posts={this.state.posts} />
       </>
     );
   }

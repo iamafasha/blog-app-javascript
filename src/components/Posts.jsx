@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Post from './Post';
 
-const Posts = ({posts}) => {
+const Posts = ({posts,delete_post}) => {
 
     const posts_render = (posts) => {
        if(posts==undefined||posts.length==0){
@@ -14,8 +14,8 @@ const Posts = ({posts}) => {
        }else{
         return (
             <>
-            {posts.map((post)=>{
-                return <Post post={post}/>
+            {posts.map((post,index)=>{
+                return <Post index={index} delete_post={delete_post} key={index} post={post}/>
             })}
             </>
         )

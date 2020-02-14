@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Post = ({post}) => {
+const Post = ({post,index,delete_post}) => {
     return (
         <div>
           <h3 className="title">{post.title}</h3>
@@ -9,7 +9,7 @@ const Post = ({post}) => {
         <div className="row settings-row">
           <div>
             <i className="fa fa-pencil post-button edit" aria-hidden="true"></i>
-            <i className="fa fa-trash post-button delete" aria-hidden="true"></i>
+            <i onClick={()=>delete_post(index)} className="fa fa-trash post-button delete" aria-hidden="true"></i>
           </div>
           <div>
             {(post.post_time).toString()}
