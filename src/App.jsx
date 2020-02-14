@@ -49,9 +49,10 @@ class App extends Component {
 
   delete=(index)=>{
     this.setState((prev)=>{
-      const posts=[...prev.posts.splice(index,1)];
+      let posts=[...prev.posts.splice(index,1)];
+      posts=prev.posts;
       return {
-         posts
+        posts
       }
     })
   }
