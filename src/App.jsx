@@ -19,7 +19,6 @@ class App extends Component {
     e.preventDefault();
     const name  = e.target.name;
     const value = e.target.value;
-    console.log(name)
     this.setState((prev)=>{
         let newPost = {...prev.newPost,[name]:value}
         return {
@@ -28,10 +27,28 @@ class App extends Component {
     })
   }
 
+  onSubmitPost=(e)=>{
+    e.preventDefault();
+    const newPost=this.state.newPost;
+    this.setState((prev)=>{
+      let new_posts=[...prev.posts,prev.newPost]
+      return {
+          posts:new_posts
+      }
+  },()=>{
+      this.setState({newPost: {
+        title:"",
+        body:""
+      }})
+  })
+
+
+  }
+
   render() {
     return (
       <>
-       <AddPost onInputChange={this.onInputChange} />
+       <AddPost post={this.state.newPost} onSubmitPost={this.onSubmitPost} onInputChange={this.onInputChange} />
        <PreviewPost post={this.state.newPost} />
        <Posts/>
       </>

@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const AddPost = ({onInputChange}) => {
+const AddPost = ({onInputChange,onSubmitPost,post}) => {
   return (
     <div>
-      <form>
+      <form onSubmit={onSubmitPost} action="post" >
       <h3>
           <input 
           required=""
@@ -16,6 +16,7 @@ const AddPost = ({onInputChange}) => {
           autoComplete="off" 
           onChange={onInputChange}
           name="title"
+          value={post.title}
           />
           </h3>
           <br/>
@@ -28,6 +29,7 @@ const AddPost = ({onInputChange}) => {
           id="body"
           rows="3"
           onChange={onInputChange}
+          value={post.body}
           ></textarea>
             </p>
           <button className="form-control" id="button" type="submit">Add New Post</button>
