@@ -1,3 +1,4 @@
+(https://img.shields.io/badge/Coverage-50%25-brightgreen)
 # Kampala Blog App
 
 React Kampala Blog App.

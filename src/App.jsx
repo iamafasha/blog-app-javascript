@@ -30,15 +30,17 @@ class App extends Component {
   onSubmitPost=(e)=>{
     e.preventDefault();
     const newPost=this.state.newPost;
+    newPost.post_time=new Date();
     this.setState((prev)=>{
-      let new_posts=[...prev.posts,prev.newPost]
+      let new_posts=[prev.newPost,...prev.posts]
       return {
           posts:new_posts
       }
   },()=>{
       this.setState({newPost: {
         title:"",
-        body:""
+        body:"",
+        post_time:undefined
       }})
   })
 
@@ -50,7 +52,7 @@ class App extends Component {
       <>
        <AddPost post={this.state.newPost} onSubmitPost={this.onSubmitPost} onInputChange={this.onInputChange} />
        <PreviewPost post={this.state.newPost} />
-       <Posts/>
+       <Posts posts={this.state.posts} />
       </>
     );
   }
