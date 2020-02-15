@@ -104,6 +104,23 @@ class App extends Component {
       return prev;
     })
   }
+
+  componentDidUpdate(){
+    localStorage.setItem('posts', JSON.stringify(this.state.posts));
+  }
+
+  componentDidMount(){
+    let   posts=JSON.parse(window.localStorage.getItem("posts"))
+    if(posts==null){
+      posts=[];
+    }
+    
+    this.setState({
+      posts
+    })
+
+  }
+  
   render() {
     return (
       <>
