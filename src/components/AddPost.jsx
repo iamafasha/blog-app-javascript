@@ -7,12 +7,12 @@ const AddPost = ({onInputChange,onSubmitPost,post}) => {
       <form onSubmit={onSubmitPost} action="post" >
       <h3>
           <input 
-          required=""
+          required
           placeholder="Title"
           className="form-control"
           type="text"
           id="title" 
-          autoFocus="" 
+          autoFocus="on" 
           autoComplete="off" 
           onChange={onInputChange}
           name="title"
@@ -22,7 +22,7 @@ const AddPost = ({onInputChange,onSubmitPost,post}) => {
           <br/>
           <p>
           <textarea
-          required=""
+          required
           placeholder="Type your body here."
           className="form-control"
           name="body"

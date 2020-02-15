@@ -53,6 +53,11 @@ button{
     visibility: hidden;
 }
 
+.edit-post.visible{
+    display: unset;
+    visibility: unset;
+}
+
 
 .settings-row{
     display: flex;

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AddPost from './components/AddPost';
 import PreviewPost from './components/PreviewPost';
 import Posts from './components/Posts';
+import { EditPost } from './components/EditPost';
 
 class App extends Component {
   constructor(props) {
@@ -10,6 +11,9 @@ class App extends Component {
       newPost: {
         title:"",
         body:""
+      },
+      editPost:{
+        id:undefined
       },
       posts:[]
     }
@@ -25,6 +29,18 @@ class App extends Component {
             newPost
         };
     })
+  }
+
+  onEditPostInputChange=(e)=>{
+    e.preventDefault();
+    const name  = e.target.name;
+    const value = e.target.value;
+    this.setState((prev)=>{
+      let editPost = {...prev.editPost,[name]:value}
+      return {
+        editPost
+      };
+  })
   }
 
   onSubmitPost=(e)=>{
@@ -57,12 +73,44 @@ class App extends Component {
     })
   }
 
+  update_post=(e)=>{
+    e.preventDefault()
+    
+    this.setState((prev)=>{
+      const {body,title}=Object.assign({},{...prev.editPost});
+      const {post_time} = {...prev.posts[prev.editPost.id]}
+      const upDatedPost={body,title,post_time}
+      prev.posts[prev.editPost.id]=upDatedPost;
+      prev.editPost.id=undefined;
+      return prev;
+    })
+  }
+
+  editPostMode=()=>{
+    if(this.state.editPost.id!=undefined){
+    return <EditPost onSave={this.update_post} onChange={this.onEditPostInputChange} onclose={this.cancelEditPost} visible={true} post={this.state.posts[this.state.editPost.id]} />
+    }
+  }
+
+  cancelEditPost=()=>{
+    this.setState((prev)=>{
+      prev.editPost.id=undefined
+      return prev;
+    })
+  }
+  editPost=(index)=>{
+    this.setState((prev)=>{
+      prev.editPost.id=index
+      return prev;
+    })
+  }
   render() {
     return (
       <>
-       <AddPost post={this.state.newPost} onSubmitPost={this.onSubmitPost} onInputChange={this.onInputChange} />
-       <PreviewPost post={this.state.newPost} />
-       <Posts delete_post={this.delete} posts={this.state.posts} />
+      <AddPost post={this.state.newPost} onSubmitPost={this.onSubmitPost} onInputChange={this.onInputChange} />
+      <PreviewPost post={this.state.newPost} />
+      <Posts onEditPost={this.editPost} delete_post={this.delete} posts={this.state.posts} />
+      {this.editPostMode()}
       </>
     );
   }
