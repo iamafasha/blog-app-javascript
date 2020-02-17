@@ -1,10 +1,36 @@
-import React from "react";
+import React,{ useState ,useCallback } from "react";
 import PropTypes from "prop-types";
 
-const AddPost = ({onInputChange,onSubmitPost,post}) => {
+const AddPost = () => {
+  const [newPost, setPost] = useState({
+    title:"",
+    body:""
+  });
+
+  const onInputChange=(e) => {
+      let x=Object.assign(newPost, {
+        [e.target.name]:e.target.value
+      });
+      setPost({...x});
+    }
+
+    const onSubmit=(e) => {
+      e.preventDefault()
+      let   posts=JSON.parse(window.localStorage.getItem("posts"))
+      if(posts==null){
+        posts=[];
+      }
+      posts.unshift(newPost);
+      localStorage.setItem('posts', JSON.stringify(posts));
+      setPost({
+        title:"",
+        body:""
+      })
+    }
+
   return (
     <div>
-      <form onSubmit={onSubmitPost} action="post" >
+      <form onSubmit={onSubmit}  action="post" >
       <h3>
           <input 
           required
@@ -14,10 +40,11 @@ const AddPost = ({onInputChange,onSubmitPost,post}) => {
           id="title" 
           autoFocus="on" 
           autoComplete="off" 
-          onChange={onInputChange}
+          value={newPost.title}
           name="title"
-          value={post.title}
+          onChange={onInputChange}
           />
+
           </h3>
           <br/>
           <p>
@@ -28,8 +55,8 @@ const AddPost = ({onInputChange,onSubmitPost,post}) => {
           name="body"
           id="body"
           rows="3"
+          value={newPost.body}
           onChange={onInputChange}
-          value={post.body}
           ></textarea>
             </p>
           <button className="form-control" id="button" type="submit">Add New Post</button>

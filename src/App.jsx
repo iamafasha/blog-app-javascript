@@ -8,13 +8,11 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      newPost: {
-        title:"",
-        body:""
-      },
+      //Add to editPost componets
       editPost:{
         id:undefined
       },
+      //add to posts components
       posts:[]
     }
   }
@@ -124,10 +122,9 @@ class App extends Component {
   render() {
     return (
       <>
-      <AddPost post={this.state.newPost} onSubmitPost={this.onSubmitPost} onInputChange={this.onInputChange} />
-      <PreviewPost post={this.state.newPost} />
-      <Posts onEditPost={this.editPost} delete_post={this.delete} posts={this.state.posts} />
-      {this.editPostMode()}
+      <AddPost />
+      {/* <PreviewPost /> */}
+      {/* <Posts /> */}
       </>
     );
   }
