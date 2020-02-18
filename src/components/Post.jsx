@@ -14,7 +14,7 @@ const Post = ({post,index}) => {
     <p className="body">{post.body}</p>
     <div className="row settings-row">
       <div>
-        <i className="fa fa-pencil post-button edit" aria-hidden="true"></i>
+        <i onClick={()=>setEditMode(true)} className="fa fa-pencil post-button edit" aria-hidden="true"></i>
         <i className="fa fa-trash post-button delete" aria-hidden="true"></i>
       </div>
       <div>
