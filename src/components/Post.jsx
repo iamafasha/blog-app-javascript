@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Post = ({post,index,delete_post,onEditPost}) => {
+const Post = ({post}) => {
     return (
         <div>
           <h3 className="title">{post.title}</h3>

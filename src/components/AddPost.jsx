@@ -1,7 +1,7 @@
 import React,{ useState ,useCallback } from "react";
 import PropTypes from "prop-types";
 
-const AddPost = () => {
+const AddPost = ({reRender}) => {
   const [newPost, setPost] = useState({
     title:"",
     body:""
@@ -12,21 +12,22 @@ const AddPost = () => {
         [e.target.name]:e.target.value
       });
       setPost({...x});
-    }
+  }
 
-    const onSubmit=(e) => {
+  const onSubmit=(e) => {
       e.preventDefault()
-      let   posts=JSON.parse(window.localStorage.getItem("posts"))
+      let posts=JSON.parse(window.localStorage.getItem("posts"))
       if(posts==null){
         posts=[];
       }
-      posts.unshift(newPost);
+      posts.unshift({...newPost,post_time:new Date()});
       localStorage.setItem('posts', JSON.stringify(posts));
       setPost({
         title:"",
         body:""
       })
-    }
+      reRender();
+  }
 
   return (
     <div>
