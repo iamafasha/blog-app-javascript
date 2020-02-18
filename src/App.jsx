@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component} from "react";
 import AddPost from './components/AddPost';
 import Posts from './components/Posts';
 import { EditPost } from './components/EditPost';

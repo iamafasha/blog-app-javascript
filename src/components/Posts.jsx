@@ -6,27 +6,23 @@ const Posts = () => {
     let posts=JSON.parse(window.localStorage.getItem("posts"))
        if(posts==null||posts.length==0){
         return (
-            <>
-            <h2>No posts to display</h2>
-            </>
+             <div className="row" id="posts" >
+                <div className="container">
+                    <h2>No posts to display</h2>
+                </div>
+            </div>
         )
        }else{
         return (
-            <>
-            {posts.map((post,index)=>{
-                return <Post key={index} post={post} />
-            })}
-            </>
+            <div className="row" id="posts" >
+                <div className="container">
+                {posts.map((post,index)=>{
+                    return <Post index={index} key={index} post={post} />
+                    })}
+                </div>
+            </div>
         )
     }
-    
-
-    return (
-        <div className="row" id="posts" >
-            <div className="container">
-            </div>
-        </div>
-    )
 }
 
 Posts.propTypes = {

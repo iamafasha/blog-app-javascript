@@ -1,23 +1,30 @@
-import React from 'react'
+import React ,{useState} from 'react'
 import PropTypes from 'prop-types'
+import { EditPost} from './EditPost';
 
-const Post = ({post}) => {
-    return (
-        <div>
-          <h3 className="title">{post.title}</h3>
-        <p className="body">{post.body}</p>
-        <div className="row settings-row">
-          <div>
-            <i onClick={()=>onEditPost(index)} className="fa fa-pencil post-button edit" aria-hidden="true"></i>
-            <i onClick={()=>delete_post(index)} className="fa fa-trash post-button delete" aria-hidden="true"></i>
-          </div>
-          <div>
-            {(post.post_time).toString()}
-          </div>
-          </div>
-        <hr/>
-        </div>
+const Post = ({post,index}) => {
+  const [editMode,setEditMode]= useState(false);
+
+  if(editMode){
+    return <EditPost index={index} />
+  }else{
+    return(
+      <div>
+      <h3 className="title">{post.title}</h3>
+    <p className="body">{post.body}</p>
+    <div className="row settings-row">
+      <div>
+        <i className="fa fa-pencil post-button edit" aria-hidden="true"></i>
+        <i className="fa fa-trash post-button delete" aria-hidden="true"></i>
+      </div>
+      <div>
+        {(post.post_time).toString()}
+      </div>
+      </div>
+    <hr/>
+    </div>
     )
+  }
 }
 
 Post.propTypes = {
