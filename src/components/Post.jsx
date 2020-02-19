@@ -11,7 +11,10 @@ const Post = ({post,index ,reRender}) => {
   }
 
   const deletePost=()=>{
-    
+    let postArray=JSON.parse(localStorage.getItem('posts'));
+    postArray.splice(index,1);
+    localStorage.setItem('posts', JSON.stringify(postArray));
+    reRender();
   }
 
   if(editMode){
@@ -24,7 +27,7 @@ const Post = ({post,index ,reRender}) => {
     <div className="row settings-row">
       <div>
         <i onClick={()=>setEditMode(true)} className="fa fa-pencil post-button edit" aria-hidden="true"></i>
-        <i className="fa fa-trash post-button delete" aria-hidden="true"></i>
+        <i onClick={deletePost} className="fa fa-trash post-button delete" aria-hidden="true"></i>
       </div>
       <div>
         {(post.post_time).toString()}
