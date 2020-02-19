@@ -13,7 +13,7 @@ class App extends Component {
       <>
       <AddPost  reRender={this.reRenderPosts }  />
       {/* <PreviewPost /> */}
-      <Posts />
+      <Posts  reRender={ this.reRenderPosts } />
       </>
     );
   }

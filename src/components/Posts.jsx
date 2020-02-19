@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Post from './Post';
 
-const Posts = () => {
+const Posts = ({reRender}) => {
     let posts=JSON.parse(window.localStorage.getItem("posts"))
        if(posts==null||posts.length==0){
         return (
@@ -17,7 +17,7 @@ const Posts = () => {
             <div className="row" id="posts" >
                 <div className="container">
                 {posts.map((post,index)=>{
-                    return <Post index={index} key={index} post={post} />
+                    return <Post reRender={reRender} index={index} key={index} post={post} />
                     })}
                 </div>
             </div>

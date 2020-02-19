@@ -2,15 +2,24 @@ import React ,{useState} from 'react'
 import PropTypes from 'prop-types'
 import { EditPost} from './EditPost';
 
-const Post = ({post,index}) => {
+const Post = ({post,index ,reRender}) => {
   const [editMode,setEditMode]= useState(false);
 
+  const editModeRendering =() =>{
+    setEditMode(false);
+    reRender();
+  }
+
+  const deletePost=()=>{
+    
+  }
+
   if(editMode){
-    return <EditPost index={index} />
+    return <EditPost reRender={editModeRendering} index={index} />
   }else{
     return(
-      <div>
-      <h3 className="title">{post.title}</h3>
+    <div>
+    <h3 className="title">{post.title}</h3>
     <p className="body">{post.body}</p>
     <div className="row settings-row">
       <div>
