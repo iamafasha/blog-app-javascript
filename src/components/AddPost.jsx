@@ -1,11 +1,13 @@
 import React,{ useState } from "react";
 import PropTypes from "prop-types";
-
+import {useHistory} from "react-router-dom"
 const AddPost = ({reRender}) => {
   const [newPost, setPost] = useState({
     title:"",
     body:""
   });
+
+  let history = useHistory();
   const onInputChange=(e) => {
       let x=Object.assign(newPost, {
         [e.target.name]:e.target.value
@@ -24,8 +26,8 @@ const AddPost = ({reRender}) => {
         title:"",
         body:""
       })
-      
       reRender();
+      history.push("/")
   }
   return (
     <div>

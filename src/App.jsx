@@ -1,10 +1,15 @@
 import React, { Component} from "react";
 import AddPost from './components/AddPost';
 import Posts from './components/Posts';
-import {BrowserRouter as Router , Switch , Link , Route } from 'react-router-dom'
+import {BrowserRouter as Router , Switch , Link , Route, useParams } from 'react-router-dom'
 import { EditPost } from './components/EditPost';
 
 class App extends Component {
+   constructor(){
+     super();
+     this.id=0;
+   }
+
   reRenderPosts=()=>{
     this.forceUpdate();
   }
@@ -22,8 +27,8 @@ class App extends Component {
         <span> <Link to="/create">Create Post</Link></span>
           <Posts  reRender={ this.reRenderPosts } />
         </Route>
-        <Route path="/edit/0">
-          <EditPost index={0} />
+        <Route path="/edit/:id">
+          <EditPost reRender={this.reRenderPosts} />
         </Route>
       </Switch>
       </Router>

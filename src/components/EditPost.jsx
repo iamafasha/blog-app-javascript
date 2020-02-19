@@ -1,6 +1,9 @@
 import React ,{useState} from 'react'
-
-export const EditPost = ({index,reRender}) => {
+import { useParams , Redirect ,useHistory} from "react-router-dom";
+export const EditPost = ({reRender}) => {
+    const params = useParams();
+    const index=params.id;
+    let history = useHistory();
     const posts=JSON.parse(window.localStorage.getItem("posts"))[index]
     const [newPost, setPost] = useState(posts);
     
@@ -20,6 +23,10 @@ export const EditPost = ({index,reRender}) => {
         posts[index]={...newPost,post_time:new Date()};
         localStorage.setItem('posts', JSON.stringify(posts));
         reRender();
+        console.log("Dd")
+        
+        history.push("/")
+        
     }
     return (
         <div id="edit-post-form" className="container edit-post visible overlay" >
