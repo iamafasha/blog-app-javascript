@@ -15,7 +15,7 @@ export const EditPost = ({index,reRender}) => {
         e.preventDefault()
         let posts=JSON.parse(window.localStorage.getItem("posts"))
         if(posts==null){
-          posts=[];
+            posts=[];
         }
         posts[index]={...newPost,post_time:new Date()};
 

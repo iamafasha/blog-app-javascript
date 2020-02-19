@@ -4,7 +4,6 @@ import { EditPost} from './EditPost';
 
 const Post = ({post,index ,reRender}) => {
   const [editMode,setEditMode]= useState(false);
-
   const editModeRendering =() =>{
     setEditMode(false);
     reRender();
