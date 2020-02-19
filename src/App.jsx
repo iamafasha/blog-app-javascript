@@ -12,12 +12,6 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <ul>
-          <li>
-            <Link to="/create">Create Posts</Link>
-          </li>
-        </ul>
-
       <Switch >
         <Route path="/create">
           <AddPost  reRender={this.reRenderPosts }  />
@@ -25,6 +19,7 @@ class App extends Component {
         </Route>
 
         <Route exact path="/">
+        <span> <Link to="/create">Create Post</Link></span>
           <Posts  reRender={ this.reRenderPosts } />
         </Route>
         <Route path="/edit/0">

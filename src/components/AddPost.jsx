@@ -6,14 +6,12 @@ const AddPost = ({reRender}) => {
     title:"",
     body:""
   });
-
   const onInputChange=(e) => {
       let x=Object.assign(newPost, {
         [e.target.name]:e.target.value
       });
       setPost({...x});
   }
-
   const onSubmit=(e) => {
       e.preventDefault()
       let posts=JSON.parse(window.localStorage.getItem("posts"))
@@ -26,9 +24,9 @@ const AddPost = ({reRender}) => {
         title:"",
         body:""
       })
+      
       reRender();
   }
-
   return (
     <div>
       <form onSubmit={onSubmit}  action="post" >

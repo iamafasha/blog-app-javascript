@@ -18,9 +18,7 @@ export const EditPost = ({index,reRender}) => {
             posts=[];
         }
         posts[index]={...newPost,post_time:new Date()};
-
         localStorage.setItem('posts', JSON.stringify(posts));
-        
         reRender();
     }
     return (
