@@ -1,7 +1,9 @@
 import React ,{useState} from 'react'
-import { useParams , Redirect ,useHistory} from "react-router-dom";
+import { useParams ,useHistory} from "react-router-dom";
+
 export const EditPost = ({reRender}) => {
     const params = useParams();
+    
     const index=params.id;
     let history = useHistory();
     const posts=JSON.parse(window.localStorage.getItem("posts"))[index]

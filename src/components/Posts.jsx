@@ -1,9 +1,12 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import PropTypes from 'prop-types'
 import Post from './Post';
+import { PostsContext } from './../context/PostContext';
 
 const Posts = ({reRender}) => {
     let posts=JSON.parse(window.localStorage.getItem("posts"))
+    const posts_ = useContext(PostsContext)
+    console.log(posts_)
        if(posts==null||posts.length==0){
         return (
              <div className="row" id="posts" >

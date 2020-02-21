@@ -3,6 +3,7 @@ import AddPost from './components/AddPost';
 import Posts from './components/Posts';
 import {BrowserRouter as Router , Switch , Link , Route, useParams } from 'react-router-dom'
 import { EditPost } from './components/EditPost';
+import PostContextProvider from "./context/PostContext";
 
 class App extends Component {
    constructor(){
@@ -18,7 +19,8 @@ class App extends Component {
     return (
       <Router>
       <Switch >
-        <Route path="/create">
+       <PostContextProvider>
+       <Route path="/create">
           <AddPost  reRender={this.reRenderPosts }  />
           {/* <PreviewPost /> */}
         </Route>
@@ -30,6 +32,7 @@ class App extends Component {
         <Route path="/edit/:id">
           <EditPost reRender={this.reRenderPosts} />
         </Route>
+       </PostContextProvider>
       </Switch>
       </Router>
     );
