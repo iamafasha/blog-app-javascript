@@ -27,7 +27,7 @@ class App extends Component {
 
         <Route exact path="/">
         <span> <Link to="/create">Create Post</Link></span>
-          <Posts  reRender={ this.reRenderPosts } />
+          <Posts />
         </Route>
         <Route path="/edit/:id">
           <EditPost reRender={this.reRenderPosts} />
