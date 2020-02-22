@@ -1,0 +1,35 @@
+import React ,{useContext } from 'react'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import { PostsContext } from "./../context/PostContext";
+
+const Post = ({ post, index }) => {
+    const { deletePost } = useContext(PostsContext);
+
+  return (
+    <div>
+      <h3 className="title">{post.title}</h3>
+      <p className="body">{post.body}</p>
+      <div className="row settings-row">
+        <div>
+          <Link to={"/edit/" + index}>
+            <i className="fa fa-pencil post-button edit" aria-hidden="true"></i>
+          </Link>
+          <i
+            onClick={()=>deletePost(index)}
+            className="fa fa-trash post-button delete"
+            aria-hidden="true"
+          ></i>
+        </div>
+        <div>{post.post_time.toString()}</div>
+      </div>
+      <hr />
+    </div>
+  );
+};
+
+Post.propTypes = {
+
+}
+
+export default Post
