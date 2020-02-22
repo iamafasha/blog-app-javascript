@@ -5,7 +5,7 @@ import { PostsContext } from './../context/PostContext';
 
 const Posts = () => {
     const {posts} = useContext(PostsContext)
-    
+    console.log(posts)
     if(posts.length==0){
         return (
             <div className="row" id="posts" >

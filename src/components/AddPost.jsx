@@ -1,34 +1,34 @@
-import React,{ useState } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import {useHistory} from "react-router-dom"
-const AddPost = ({reRender}) => {
+import { PostsContext } from "./../context/PostContext";
+
+const AddPost = () => {
+  const { addPost } = useContext(PostsContext);
   const [newPost, setPost] = useState({
     title:"",
     body:""
   });
 
-  let history = useHistory();
+  const history = useHistory();
+
   const onInputChange=(e) => {
       let x=Object.assign(newPost, {
         [e.target.name]:e.target.value
       });
       setPost({...x});
   }
+  
   const onSubmit=(e) => {
       e.preventDefault()
-      let posts=JSON.parse(window.localStorage.getItem("posts"))
-      if(posts==null){
-        posts=[];
-      }
-      posts.unshift({...newPost,post_time:new Date()});
-      localStorage.setItem('posts', JSON.stringify(posts));
+      addPost({ ...newPost, post_time: new Date() });
       setPost({
         title:"",
         body:""
       })
-      reRender();
       history.push("/")
   }
+  
   return (
     <div>
       <form onSubmit={onSubmit}  action="post" >

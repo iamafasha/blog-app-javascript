@@ -8,7 +8,13 @@ export const PostsContext = createContext();
     if(dbposts===null){
       dbposts=[]
     }
-    const [posts , setPost]= useState(dbposts);
+    const [posts, setPost] = useState([...dbposts]);
+
+     const addPost = (newPost) => {
+       const oldPost = [newPost,...posts];
+       setPost(oldPost);
+     };
+    
 
     const deletePost=(index)=>{
         const oldPost = [...posts];
@@ -24,11 +30,13 @@ export const PostsContext = createContext();
 
       useEffect(() => {
         localStorage.setItem("posts", JSON.stringify(posts));
-      });
+      },[posts]);
     
 
     return (
-      <PostsContext.Provider value={{ posts, deletePost, updatePost }}>
+      <PostsContext.Provider
+        value={{ posts: [...posts], deletePost, updatePost, addPost }}
+      >
         {props.children}
       </PostsContext.Provider>
     );
