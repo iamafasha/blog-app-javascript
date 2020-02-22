@@ -1,5 +1,5 @@
 import React ,{useState , useContext } from 'react'
-import { useParams ,useHistory} from "react-router-dom";
+import { useParams ,useHistory ,Link} from "react-router-dom";
 import { PostsContext } from "./../context/PostContext";
 
 export const EditPost = ({reRender}) => {
@@ -21,19 +21,50 @@ export const EditPost = ({reRender}) => {
         history.push("/")
     }
     return (
-        <div id="edit-post-form" className="container edit-post visible overlay" >
-            <span onClick={onclose} id="edit-close-btn" className="cancel-button pull-right">
-                <i className="fa fa-close" aria-hidden="true"></i>
-            </span>
-            <br/>
-            <h2>Edit your post</h2>
-            <form onSubmit={onSubmit} className="form-group" id="edit-blog-form" method="post">
-            <h3>
-                <input onChange={onInputChange} value={post.title} name="title" required placeholder="Title" className="form-control" type="text" id="edit-title" autoFocus="" /> </h3> <br/>
-                <p>
-                <textarea  onChange={onInputChange} value={post.body} name="body"  required placeholder="Type your body here." className="form-control" id="edit-body" rows="3"></textarea></p>
-        <button className="form-control" id="edit-button" type="submit">Save Post</button>
+      <div id="edit-post-form" className="container edit-post visible overlay">
+        <span id="edit-close-btn" className="cancel-button pull-right">
+          <Link  to="/" >
+            <i className="fa fa-close" aria-hidden="true"></i>
+          </Link>
+        </span>
+        <br />
+        <h2>Edit your post</h2>
+        <form
+          onSubmit={onSubmit}
+          className="form-group"
+          id="edit-blog-form"
+          method="post"
+        >
+          <h3>
+            <input
+              onChange={onInputChange}
+              value={post.title}
+              name="title"
+              required
+              placeholder="Title"
+              className="form-control"
+              type="text"
+              id="edit-title"
+              autoFocus=""
+            />{" "}
+          </h3>{" "}
+          <br />
+          <p>
+            <textarea
+              onChange={onInputChange}
+              value={post.body}
+              name="body"
+              required
+              placeholder="Type your body here."
+              className="form-control"
+              id="edit-body"
+              rows="3"
+            ></textarea>
+          </p>
+          <button className="form-control" id="edit-button" type="submit">
+            Save Post
+          </button>
         </form>
-        </div>
-    )
+      </div>
+    );
 }

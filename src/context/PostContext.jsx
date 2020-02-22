@@ -23,7 +23,7 @@ export const PostsContext = createContext();
       }
 
       useEffect(() => {
-        console.log("Changed")
+        localStorage.setItem("posts", JSON.stringify(posts));
       });
     
 
